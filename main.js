@@ -60,8 +60,9 @@ var btnDoubleMoney = document.getElementById("doubleMoney");
 var btnCalculateEntireWealth = document.getElementById("calculateEntireWealth");
 var btnSortByRichest = document.getElementById("sortByRichest");
 var btnShowOnlyMillionaires = document.getElementById("showOnlyMillionaires");
-var addRandomUser = document.getElementById("addRandomUser");
-addRandomUser.addEventListener("click", function () {
+var btnaddRandomUser = document.getElementById("addRandomUser");
+
+btnaddRandomUser.addEventListener("click", function () {
     fetch(url)
         .then(handleErrors)
         .then(parseJSON)
@@ -108,16 +109,23 @@ function doubleMoney() {
 
 
 function sortByrichest() {
+    let desc = 1;
     let sortIcon = document.getElementById('sortIcon');
     if (sortIcon.classList.contains('fa-sort-amount-desc')) {
         sortIcon.classList.remove('fa-sort-amount-desc');
         sortIcon.classList.add('fa-sort-amount-asc');
+         desc = 1;
+        console.log("in if ");
+
     } else {
         sortIcon.classList.remove('fa-sort-amount-asc');
         sortIcon.classList.add('fa-sort-amount-desc');
+         desc = -1;
+        console.log("in else ");
+
     }
-    let desc = true;
-    usersList.sort((a, b) => ((a.wealth > b.wealth) && desc) ? 1 : -1);
+    console.log("Sort desc "+desc);
+    usersList.sort((a, b) => ((a.wealth > b.wealth)) ? 1*desc : -1*desc);
     loadData(usersList);
 }
 
