@@ -32,4 +32,6 @@ function sortByrichest(){
    usersList.sort((a, b) => (a.wealth > b.wealth) ? 1 : -1);
 }
 
+
+
 }
