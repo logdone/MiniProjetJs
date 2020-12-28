@@ -28,8 +28,8 @@ function doubleMoney(){
 }
 
 
-function sortByrichest(){
-   usersList.sort((a, b) => (a.wealth > b.wealth) ? 1 : -1);
+function sortByrichest(desc){
+   usersList.sort((a, b) => ((a.wealth > b.wealth) && desc) ? 1 : -1);
 }
 
 
