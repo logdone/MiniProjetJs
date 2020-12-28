@@ -1,18 +1,21 @@
+var faker = require('faker');
 /*var person = {
   firstName: "",
   lastName: "",
-  age: 0,
   wealth: 0
 };
 */
-
 var usersList = [];
 function addUser(){
     let person = new Object();
+    /*
     person.firstName = document.getElementById("firstName");
     person.lastName = document.getElementById("lastName");
     person.wealth = document.getElementById("wealth");
-    person.age = document.getElementById("age");
+    */
+    person.firstName = faker.name.firstName;
+    person.lastName = faker.name.lastName;
+    person.wealth = Math.floor(Math.random() * 1000000);
     usersList.push(person);
 }
 
@@ -32,6 +35,8 @@ function sortByrichest(desc){
    usersList.sort((a, b) => ((a.wealth > b.wealth) && desc) ? 1 : -1);
 }
 
-
+function calculateEntierWealth(){
+  return  usersList.reduce((a, b) => a + b, 0);
+}
 
 }
