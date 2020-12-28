@@ -6,16 +6,20 @@ var faker = require('faker');
 };
 */
 var usersList = [];
-function addUser(){
+function addRandomUser(){
     let person = new Object();
-    /*
-    person.firstName = document.getElementById("firstName");
-    person.lastName = document.getElementById("lastName");
-    person.wealth = document.getElementById("wealth");
-    */
     person.firstName = faker.name.firstName;
     person.lastName = faker.name.lastName;
     person.wealth = Math.floor(Math.random() * 1000000);
+    usersList.push(person);
+}
+
+
+function addUser(){
+    let person = new Object();
+    person.firstName = document.getElementById("firstName");
+    person.lastName = document.getElementById("lastName");
+    person.wealth = document.getElementById("wealth");
     usersList.push(person);
 }
 
