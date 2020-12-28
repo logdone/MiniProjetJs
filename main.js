@@ -6,7 +6,7 @@ const url = ' https://randomuser.me/api/ ';
 };
 */
 var usersList = [];
-
+var showMill = false;
 
 function handleErrors(res) {
     if (!res.ok) {
@@ -98,13 +98,17 @@ function addUser() {
 
 function showOnlyMillionaires() {
     hideEntierWealth();
-
-    hideEntierWealth();
+    showMill = !showMill;
+    if(showMill){
     var list = usersList.filter(user => {
        return user.wealth >= 1000000
     });
     console.log("Mill nbr "+list.length);
     loadData(list);
+    }
+    else{
+        loadData(usersList);
+    }
 }
 
 
@@ -143,8 +147,8 @@ function calculateEntierWealth() {
     var totalWealth = document.getElementById("totalWealth");
     var x = document.getElementById("tableFooter");
 
-    totalWealth.innerHTML = "$" + usersList.reduce((a, b) => a + b.wealth, 0);
-    x.style.display = "block";
+    totalWealth.innerHTML = "$" + usersList.reduce((a, b) => parseFloat(a) + parseFloat(b.wealth), 0);
+    x.style.display = "";
 
 }
 
