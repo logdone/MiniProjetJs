@@ -38,10 +38,13 @@
               Custom User <i class="fa fa-user"></i></button>
           </div>
         </div>
-        <button class="btn btn-primary menu-btn" id="">Double Money <i class="fa fa-times">2</i></button>
-        <button class="btn btn-primary menu-btn" id="">Show Only Millionaires <i class="fa fa-money"></i></button>
-        <button class="btn btn-primary menu-btn" id="">Sort By Richest <i class="fa fa-sort-amount-desc"></i></button>
-        <button class="btn btn-primary menu-btn" id="">Calculate Entire Wealth <i class="fa fa-calculator"></i></button>
+        <button class="btn btn-primary menu-btn" id="doubleMoney">Double Money <i class="fa fa-times">2</i></button>
+        <button class="btn btn-primary menu-btn" id="showOnlyMillionaires">Show Only Millionaires <i
+            class="fa fa-money"></i></button>
+        <button class="btn btn-primary menu-btn" id="sortByRichest">Sort By Wealth <i
+            class="fa fa-sort-amount-desc"></i></button>
+        <button class="btn btn-primary menu-btn" id="calculateEntireWealth">Calculate Entire Wealth <i
+            class="fa fa-calculator"></i></button>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -63,18 +66,6 @@
             </tr>
           </thead>
           <tbody id="tableBody">
-            <tr>
-              <td>Mark Zuckerburger</td>
-              <td>500.000</td>
-            </tr>
-            <tr>
-              <td>Jeff Vsauce</td>
-              <td>5.500.000</td>
-            </tr>
-            <tr>
-              <td>Elonely Musketeer</td>
-              <td>1.500.000</td>
-            </tr>
           </tbody>
           <tfoot style="display: none;">
             <tr>
@@ -112,8 +103,12 @@
             </div>
             <div class="form-group">
               <label for="wealth">Wealth</label>
-              <input type="text" class="form-control" id="wealth">
-            </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">$</div>
+                </div>
+                <input type="number" step="0.99" class="form-control" id="wealth">
+              </div>
           </form>
         </div>
         <div class="modal-footer">
