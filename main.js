@@ -27,6 +27,7 @@ function parseJSON(res) {
 
 
 function loadData(personsList) {
+    hideEntierWealth();
     var table = document.getElementById("tableBody");
     table.innerHTML = "";
     personsList.forEach(user => {
@@ -43,6 +44,7 @@ function loadData(personsList) {
 
 
 function addRandomUser(profile) {
+    hideEntierWealth();
     let person = new Object();
     person.firstName = profile.results[0].name.first;
     person.lastName = profile.results[0].name.last;
@@ -83,6 +85,8 @@ btnShowOnlyMillionaires.addEventListener('click', showOnlyMillionaires);
 
 
 function addUser() {
+    hideEntierWealth();
+
     let person = new Object();
     person.firstName = document.getElementById("firstName").value;
     person.lastName = document.getElementById("lastName").value;
@@ -93,6 +97,9 @@ function addUser() {
 }
 
 function showOnlyMillionaires() {
+    hideEntierWealth();
+
+    hideEntierWealth();
     var list = usersList.filter(user => {
        return user.wealth >= 1000000
     });
@@ -102,6 +109,7 @@ function showOnlyMillionaires() {
 
 
 function doubleMoney() {
+    hideEntierWealth();
     usersList.forEach(user => {
         user.wealth = user.wealth * 2;
     });
@@ -110,6 +118,7 @@ function doubleMoney() {
 
 
 function sortByrichest() {
+    hideEntierWealth();
     let desc = 1;
     let sortIcon = document.getElementById('sortIcon');
     if (sortIcon.classList.contains('fa-sort-amount-desc')) {
@@ -131,7 +140,15 @@ function sortByrichest() {
 }
 
 function calculateEntierWealth() {
-    var totalWealth = document.getElementById(totalWealth);
-    totalWealth.innerHTML = "$" + usersList.reduce((a, b) => a + b, 0);
+    var totalWealth = document.getElementById("totalWealth");
+    var x = document.getElementById("tableFooter");
 
+    totalWealth.innerHTML = "$" + usersList.reduce((a, b) => a + b.wealth, 0);
+    x.style.display = "block";
+
+}
+
+function hideEntierWealth(){
+    var x = document.getElementById("tableFooter");
+    x.style.display = "none";
 }
