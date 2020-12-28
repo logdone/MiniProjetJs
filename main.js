@@ -26,10 +26,10 @@ function parseJSON (res){
 
 
 
-  function loadData(){
+  function loadData(personsList){
     var table = document.getElementById("tableBody");
     table.innerHTML = "";
-    usersList.forEach(user => {
+    personsList.forEach(user => {
     var tr = document.createElement("tr");
     var tdName = document.createElement("td");
     tdName.innerHTML = user.firstName + " " + user.lastName ; 
@@ -50,14 +50,18 @@ function addRandomUser(profile){
     console.log("Person "+person.toString());
     usersList.push(person);
     console.log("List "+usersList.length);
-    loadData();
+    loadData(usersList);
 
 }
 
 
-
-var btnAddUser = document.getElementById("addRandomUser");
-btnAddUser.addEventListener("click",function() {
+var btnAddUser = document.getElementById("addUser");
+var btnDoubleMoney = document.getElementById("doubleMoney");
+var btnCalculateEntireWealth = document.getElementById("calculateEntireWealth");
+var btnSortByRichest = document.getElementById("sortByRichest");
+var btnShowOnlyMillionaires = document.getElementById("showOnlyMillionaires");
+var addRandomUser = document.getElementById("addRandomUser");
+addRandomUser.addEventListener("click",function() {
 fetch(url)
 .then(handleErrors)
 .then(parseJSON)
@@ -66,7 +70,11 @@ fetch(url)
 });
 
 
-
+btnAddUser.addEventListener('click',addUser);
+btnDoubleMoney.addEventListener('click',doubleMoney);
+btnSortByRichest.addEventListener('click',sortByrichest);
+btnCalculateEntireWealth.addEventListener('click',calculateEntierWealth);
+btnShowOnlyMillionaires.addEventListener('click',showOnlyMillionaires);
 
 
 
@@ -75,35 +83,45 @@ fetch(url)
 
 function addUser(){
     let person = new Object();
-    person.firstName = document.getElementById("firstName");
-    person.lastName = document.getElementById("lastName");
-    person.wealth = document.getElementById("wealth");
+    person.firstName = document.getElementById("firstName").value;
+    person.lastName = document.getElementById("lastName").value;
+    person.wealth = document.getElementById("wealth").value;
     usersList.push(person);
+    console.log("in add user");
+    loadData(usersList);
 }
 
 function showOnlyMillionaires(){
-    return usersList.filter(user => {
+    var list = usersList.filter(user => {
         user.wealth>=1000000
     });
+    loadData(list);
+}
+
 
 function doubleMoney(){
     usersList.forEach(user => {
         user.wealth = user.wealth*2;
     });
+    loadData(usersList);
 }
 
 
-function sortByrichest(desc){
+function sortByrichest(){
+    let desc = true;
    usersList.sort((a, b) => ((a.wealth > b.wealth) && desc) ? 1 : -1);
+   loadData(usersList);
 }
 
 function calculateEntierWealth(){
-  return  usersList.reduce((a, b) => a + b, 0);
+    var totalWealth = document.getElementById(totalWealth);
+    totalWealth.innerHTML  = "$" +usersList.reduce((a, b) => a + b, 0);
+    
 }
 
 
 
-}
+
 
 
 
