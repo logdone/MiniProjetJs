@@ -94,8 +94,9 @@ function addUser() {
 
 function showOnlyMillionaires() {
     var list = usersList.filter(user => {
-        user.wealth >= 1000000
+       return user.wealth >= 1000000
     });
+    console.log("Mill nbr "+list.length);
     loadData(list);
 }
 
